@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="account">#151E27</color>
+    <color name="title_account">#1C242F</color>
+    <color name="add_sell">#233234</color>
+    <color name="btn_signIn">#FFFFFF</color>
+    <color name="text_nav_color">#FFFFFF</color>
+    <color name="nav_bar">#FFFFFF</color>
+    <color name="ic_personal_edit">@color/white</color>
+    <color name="ic_lock">@color/white</color>
+    <color name="ic_delete">@color/white</color>
+    <color name="ic_power">@color/white</color>
+    <color name="ic_verify">@color/white</color>
+    <color name="ic_brand">@color/white</color>
+    <color name="ic_category">@color/white</color>
+    <color name="ic_condition">@color/white</color>
+    <color name="ic_location">@color/white</color>
+    <color name="ic_price">@color/white</color>
+    <color name="ic_title">@color/white</color>
+    <color name="ic_description">@color/white</color>
+
+
+</resources>
