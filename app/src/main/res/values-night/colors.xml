@@ -18,6 +18,9 @@
     <color name="ic_price">@color/white</color>
     <color name="ic_title">@color/white</color>
     <color name="ic_description">@color/white</color>
+    <color name="CodePicker">#FFFFFF</color>
+    <color name="ic_calender">#FFFFFF</color>
+
 
 
 </resources>

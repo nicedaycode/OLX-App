@@ -2,6 +2,7 @@ package com.example.olx.activity.editProfile
 
 import android.Manifest
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.app.ProgressDialog
 import android.content.ContentValues
 import android.content.Intent
@@ -24,6 +25,9 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.storage.FirebaseStorage
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 class ProfileEditActivity : AppCompatActivity() {
 
@@ -39,6 +43,33 @@ class ProfileEditActivity : AppCompatActivity() {
     private var myUserType = ""
 
     private var imageUri: Uri? = null
+
+    private val cal = Calendar.getInstance()
+    private val dateSetListener = DatePickerDialog.OnDateSetListener {_,year,monthOfYear, dayOfMonth ->
+        
+        cal.set(Calendar.YEAR, year)
+        cal.set(Calendar.MONTH, monthOfYear)
+        cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+        dateFormat(cal.time)
+        
+    }
+
+    private fun dateFormat(yourDate: Any) {
+
+        val format3 = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(yourDate)
+
+        val dateTxt =  binding.dobTxt
+        dateTxt.text = format3
+        /*val format1 = SimpleDateFormat("MM-dd-yyyy", Locale.getDefault()).format(yourDate)
+        val format2 = SimpleDateFormat("mm-dd-yyyy", Locale.getDefault()).format(yourDate)
+        val format3 = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(yourDate)
+        val format4 = SimpleDateFormat("dd-MMM-yyyy", Locale.getDefault()).format(yourDate)
+        val format5 = SimpleDateFormat("MMM-dd-yyyy", Locale.getDefault()).format(yourDate)
+        val format6 = SimpleDateFormat("MMM-dd-yyyy", Locale.getDefault()).format(yourDate)
+        val format7 = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(yourDate)
+        val format8 = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(yourDate)*/
+
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +97,16 @@ class ProfileEditActivity : AppCompatActivity() {
             validateData()
         }
 
+        binding.dobBtn.setOnClickListener {
+            DatePickerDialog(
+                this,
+                dateSetListener,
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH),
+            ).show()
+        }
+
     }
 
     private var name = ""
@@ -77,7 +118,7 @@ class ProfileEditActivity : AppCompatActivity() {
     private fun validateData() {
 
         name = binding.nameEt.text.toString().trim()
-        dob = binding.dobEt.text.toString().trim()
+        dob = binding.dobTxt.text.toString().trim()
         email = binding.emailEt.text.toString().trim()
         phoneCode = binding.countryCodePickerTil.selectedCountryCodeWithPlus
         phoneNumber = binding.phoneNumberEt.text.toString().trim()
@@ -199,7 +240,7 @@ class ProfileEditActivity : AppCompatActivity() {
                     }
 
                     binding.emailEt.setText(email)
-                    binding.dobEt.setText(dob)
+                    binding.dobTxt.setText(dob)
                     binding.nameEt.setText(name)
                     binding.phoneNumberEt.setText(phoneNumber)
 

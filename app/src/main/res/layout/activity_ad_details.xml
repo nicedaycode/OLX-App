@@ -68,7 +68,8 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbarRl">
+        android:layout_below="@id/toolbarRl"
+        android:layout_above="@+id/optionsLl">
 
         <RelativeLayout
             android:layout_width="match_parent"

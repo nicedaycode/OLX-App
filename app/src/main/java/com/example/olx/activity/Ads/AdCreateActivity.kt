@@ -478,7 +478,7 @@ class AdCreateActivity : AppCompatActivity() {
                         val progress = 100.0 * snapshot.bytesTransferred / snapshot.totalByteCount
                         Log.d(TAG, "uploadImageStorage: progress: $progress")
                         val message =
-                            "Uploading $imageIndexForProgress of ${imagePickedArrayList.size} image... Progress ${progress.toInt()}"
+                            "Uploading $imageIndexForProgress of ${imagePickedArrayList.size} image... Progress ${progress.toInt()} %"
                         Log.d(TAG, "uploadImageStorage: message: $message")
 
                         progressDialog.setMessage(message)

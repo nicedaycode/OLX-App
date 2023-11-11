@@ -83,7 +83,9 @@
                 android:minWidth="60dp"
                 android:minHeight="56dp"
                 app:ccp_autoDetectCountry="true"
-                app:ccp_contentColor="@color/colorGray01"
+                app:ccp_contentColor="@color/CodePicker"
+                app:ccpDialog_background="@color/title_account"
+                app:ccpDialog_textColor="@color/CodePicker"
                 app:ccp_rememberLastSelection="true"
                 app:ccp_showFlag="false"
                 app:ccp_showNameCode="false" />

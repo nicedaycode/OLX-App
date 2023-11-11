@@ -97,7 +97,7 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
+            <!--<com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/dobTil"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
@@ -114,17 +114,41 @@
                 <EditText
                     android:id="@+id/dobEt"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:inputType="textPersonName" />
 
-            </com.google.android.material.textfield.TextInputLayout>
+            </com.google.android.material.textfield.TextInputLayout>-->
+
+
+            <ImageButton
+                android:id="@+id/dobBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/nameTil"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/transparent"
+                android:padding="10dp"
+                android:src="@drawable/ic_calendar_white" />
+
+            <TextView
+                android:id="@+id/dobTxt"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_below="@id/nameTil"
+                android:layout_marginTop="10dp"
+                android:textSize="20sp"
+                android:padding="10dp"
+                android:hint="Date"
+                android:layout_toEndOf="@id/dobBtn"
+                android:layout_marginStart="10dp"
+                android:inputType="textPersonName" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emailTil"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/dobTil"
+                android:layout_below="@id/dobBtn"
                 android:layout_marginTop="10dp"
                 android:hint="Email"
                 app:boxCornerRadiusBottomEnd="8dp"
@@ -158,6 +182,9 @@
                     android:minWidth="60dp"
                     android:minHeight="56dp"
                     app:ccp_autoDetectCountry="true"
+                    app:ccp_contentColor="@color/CodePicker"
+                    app:ccpDialog_background="@color/title_account"
+                    app:ccpDialog_textColor="@color/CodePicker"
                     app:ccp_rememberLastSelection="true"
                     app:ccp_showFlag="false"
                     app:ccp_showNameCode="false" />

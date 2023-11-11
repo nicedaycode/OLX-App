@@ -3,20 +3,24 @@ package com.example.olx.fragments
 import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import com.bumptech.glide.Glide
 import com.example.olx.activity.main.MainActivity
 import com.example.olx.R
+import com.example.olx.SharedPreferencesManager
 import com.example.olx.activity.editProfile.ProfileEditActivity
 import com.example.olx.activity.editProfile.ChangePasswordActivity
 import com.example.olx.activity.editProfile.DeleteAccountActivity
 import com.example.olx.databinding.FragmentAccountBinding
 import com.example.olx.utils.Utils
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -25,10 +29,12 @@ import com.google.firebase.database.ValueEventListener
 
 class AccountFragment : Fragment() {
 
+    private val themeTitleList = arrayOf("Light", "Dark", "Auto (System Default)")
     private lateinit var binding: FragmentAccountBinding
     private lateinit var mContext: Context
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var progressDialog: ProgressDialog
+
 
     private companion object {
         private const val TAG = "ACCOUNT_TAG"
@@ -57,6 +63,7 @@ class AccountFragment : Fragment() {
         progressDialog.setTitle("Please wait...")
         progressDialog.setCanceledOnTouchOutside(false)
 
+
         loadMyInfo()
 
 
@@ -81,6 +88,34 @@ class AccountFragment : Fragment() {
 
         binding.deleteAccountCv.setOnClickListener {
             startActivity(Intent(mContext, DeleteAccountActivity::class.java))
+        }
+
+
+        val SharedPreferencesManager = SharedPreferencesManager(mContext)
+
+        var checkedTheme = SharedPreferencesManager.theme
+
+        binding.themeTxt.text = "${themeTitleList[SharedPreferencesManager.theme]}"
+
+        val themeDialog = MaterialAlertDialogBuilder(mContext, R.style.dark_theme)
+            .setTitle("Choose Theme")
+            .setPositiveButton("Ok") { _, _ ->
+
+                SharedPreferencesManager.theme = checkedTheme
+                AppCompatDelegate.setDefaultNightMode(SharedPreferencesManager.themeFlag[checkedTheme])
+                binding.themeTxt.text = "${themeTitleList[SharedPreferencesManager.theme]}"
+
+
+            }
+            .setSingleChoiceItems(themeTitleList, checkedTheme,) { _, which ->
+                checkedTheme = which
+            }
+            .setCancelable(false)
+
+
+        binding.changeThemeBtn.setOnClickListener {
+
+            themeDialog.show()
         }
 
     }
@@ -161,7 +196,7 @@ class AccountFragment : Fragment() {
                 progressDialog.dismiss()
                 Utils.toast(mContext, "Account verification instructions sent to your email...")
             }
-            .addOnFailureListener {e ->
+            .addOnFailureListener { e ->
                 Log.d(TAG, "verifyAccount: ", e)
                 progressDialog.dismiss()
                 Utils.toast(mContext, "Failed to sent due to ${e.message}")

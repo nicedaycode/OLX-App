@@ -1,13 +1,16 @@
 package com.example.olx.activity.main
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import com.example.olx.R
 import com.example.olx.activity.Ads.AdCreateActivity
@@ -33,6 +36,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
 
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -46,6 +51,8 @@ class MainActivity : AppCompatActivity() {
             updateFcmToken()
             askNotificationPermission()
         }
+
+
 
         showHomeFragment()
 

@@ -27,6 +27,8 @@
     <color name="ic_price">@color/black</color>
     <color name="ic_title">@color/black</color>
     <color name="ic_description">@color/black</color>
+    <color name="CodePicker">#000000</color>
+    <color name="ic_calender">#595959</color>
 
 
 
